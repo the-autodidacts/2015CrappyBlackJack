@@ -28,11 +28,22 @@ var deck = {
 
     for (i in this.deckValues){
       for (j in this.deckSuits){
-        this.deck.push(this.deckValues[i].value, this.deckSuits[j].suit)
+        this.deck.push(this.deckValues[i].value + " " + this.deckSuits[j].suit)
       }
     }
-  }
+  },
   shuffleDeck:  function (){
+    while (i < 120){
+      var j = Math.floor(Math.random()*52)
+      var k = Math.floor(Math.random()*52)
+      this.swapCards( j, k)
+      i++;
+    }
+  },
+  swapCards: function(j, k){
 
+      var temp      = this.deck[j];
+      this.deck[j]  = this.deck[k];
+      this.deck[k]  = temp;
   }
 }
