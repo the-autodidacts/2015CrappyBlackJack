@@ -1,6 +1,5 @@
 
 var deck = {
-  shoe: [],
   deck: [],
   deckValues:   [
                   {value:1},
@@ -46,10 +45,15 @@ var deck = {
     this.deck[k]  = temp;
   },
   dealCard: function(){
-    if (deck.length < 12){
+    if (this.deck.length < 12){
       return alert("not enough cards must shuffle or start a new game");
     }else{
       return this.deck.pop();
     }
+  },
+  //  translate value of card into a numeric
+  translateCard: function() {
+    var cardString = parseInt(this.deck[this.deck.length - 1].substring(0,2));
+    return cardString;
   }
 }
