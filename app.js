@@ -1,7 +1,9 @@
 
 var deck = {
+  shoe: [],
   deck: [],
   deckValues:   [
+                  {value:1},
                   {value:2},
                   {value:3},
                   {value:4},
@@ -14,7 +16,6 @@ var deck = {
                   {value:11},
                   {value:12},
                   {value:13},
-                  {value:14},
                 ],
 
   deckSuits:    [
@@ -24,8 +25,6 @@ var deck = {
                   {suit:'club'},
                 ],
   createDeck:   function (){
-    var deck = []
-
     for (i in this.deckValues){
       for (j in this.deckSuits){
         this.deck.push(this.deckValues[i].value + " " + this.deckSuits[j].suit)
@@ -42,8 +41,15 @@ var deck = {
   },
   swapCards: function(j, k){
 
-      var temp      = this.deck[j];
-      this.deck[j]  = this.deck[k];
-      this.deck[k]  = temp;
+    var temp      = this.deck[j];
+    this.deck[j]  = this.deck[k];
+    this.deck[k]  = temp;
+  },
+  dealCard: function(){
+    if (deck.length < 12){
+      return alert("not enough cards must shuffle or start a new game");
+    }else{
+      return this.deck.pop();
+    }
   }
 }
