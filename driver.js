@@ -1,25 +1,40 @@
 // Game object instance
 var blackjack = function () {
-   function start () {
-    deck.shuffleDeck()
-    // can `for each` down the line when adding more players
-    player.placeBet(player.bet)
-    player.hit(deck.dealCard())
-    dealer.hit(deck.dealCard())
-    player.hit(deck.dealCard())
-    dealer.hit(deck.dealCard())
-  }
-  start()
-  // game algo
+
+     //createDeck will be needed to reset game in the future
+  deck.createDeck()
+  deck.shuffleDeck()
+  // can `for each` down the line when adding more players
+  player.placeBet(player.bet)
+  player.hit(deck.dealCard())
+  dealer.hit(deck.dealCard())
+  player.hit(deck.dealCard())
+  dealer.hit(deck.dealCard())
+  player.calculate()
+
+  // var handValue = 0
+  // for (var i in player.hand) {
+  //   handValue += player.hand[i].value
+  //   if
+  // }
+
+
   console.log('player is holding ' + player.hand[0].name + ' and ' + player.hand[1].name)
   console.log('dealers is holding ' + dealer.hand[0].name)
   console.log('player is betting $' + player.bet)
   console.log('player has $' + player.purse)
+  console.log("value of player's hand: " + player.calculate())
   //  player hand value compare to 21 if == 21 check dealer if dealer not 21 win 1.5
   //  else if > 21 bust  else ask hit or stand
 
   //  dealer if value under 17 hit until 17 or bust. Figure ace 1 or 11 for both somehow
 }
+  // New to be able to create deck
+  var reset = function () {
+    deck.newDeck = deck.deck
+    player.hand = []
+    dealer.hand = []
+  }
 
 // Deck object
 var deck = {
@@ -79,6 +94,17 @@ var deck = {
                   {name:  "king of diamonds", value: 10, suit: 'diamond'}
                 ],
 
+      gameDeck:  [],
+//can't push into gameDeck copying functions is and issue
+  createDeck:   function(){
+    for ( i = 0; i < this.deck.length; i++){
+      var temp = {}
+      temp = this.deck[i]
+      // console.log(temp);
+      this.gameDeck.push(temp)
+    }
+    console.log(this);
+  },
   shuffleDeck: function () {
     for (var i = 0; i < 120 ; i++) {
       var j = Math.floor(Math.random()*52)
@@ -95,36 +121,8 @@ var deck = {
     if (this.deck.length < 8){
       return alert("not enough cards must shuffle or start a new game");
     }else{
-      return this.deck.pop();
+      return this.deck.pop()
     }
-  }
-}
-//  player object
-var player = {
-  hand:       [],
-  purse:      1000,
-  bet:        25,
-
-  raiseBet: function (amount) {
-    this.bet += amount
-    return this.bet
-  },
-  resetBet: function () {
-    this.bet = 25
-    return this.bet
-  },
-  placeBet: function () {
-    this.purse -= this.bet
-    return this.purse
-  },
-  hit: function (card) {
-    this.hand.push(card)
-  },
-  stand: function () {
-
-  },
-  split: function (card, bet) {
-
   }
 }
 
@@ -132,6 +130,13 @@ var player = {
 var dealer = {
   hand:       [],
 
+  calculate:  function () {
+    var value = 0
+    for (i = 0; i < this.hand.length; i ++){
+      value  += this.hand[i].value
+    }
+      return value;
+  },
   hit: function (card) {
     this.hand.push(card)
   },
