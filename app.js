@@ -51,9 +51,10 @@ var deck = {
       return this.deck.pop();
     }
   },
-  //  translate value of card into a numeric
+  //  translate value of card into a numeric and pull suit string to create new object
   translateCard: function() {
-    var cardString = parseInt(this.deck[this.deck.length - 1].substring(0,2));
-    return cardString;
+    var str = this.deck[this.deck.length -1].substring()
+    var cardInt = parseInt(this.deck[this.deck.length - 1].substring(0,2));
+    return cardInt;
   }
 }
