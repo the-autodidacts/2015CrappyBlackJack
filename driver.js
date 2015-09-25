@@ -1,20 +1,29 @@
 // Game object instance
 var blackjack = function () {
-  deck.shuffleDeck()
-  console.log(deck.deck)
-  player.placeBet(player.bet)
-  player.hit(deck.dealCard())
-  dealer.hit(deck.dealCard())
-  player.hit(deck.dealCard())
-  dealer.hit(deck.dealCard())
-  console.log(player.hand)
-  console.log(dealer.hand[0])
-  console.log(player.bet)
-  console.log(player.purse)
+   function start () {
+    deck.shuffleDeck()
+    // can `for each` down the line when adding more players
+    player.placeBet(player.bet)
+    player.hit(deck.dealCard())
+    dealer.hit(deck.dealCard())
+    player.hit(deck.dealCard())
+    dealer.hit(deck.dealCard())
+  }
+  start()
+  // game algo
+  console.log('player is holding ' + player.hand[0].name + ' and ' + player.hand[1].name)
+  console.log('dealers is holding ' + dealer.hand[0].name)
+  console.log('player is betting $' + player.bet)
+  console.log('player has $' + player.purse)
+  //  player hand value compare to 21 if == 21 check dealer if dealer not 21 win 1.5
+  //  else if > 21 bust  else ask hit or stand
+
+  //  dealer if value under 17 hit until 17 or bust. Figure ace 1 or 11 for both somehow
 }
 
 // Deck object
 var deck = {
+  // maybe add more decks to a shoe object down the line
   deck:  [
                   {name:  "ace of spades",value: 1, suit: 'spade'},
                   {name:  "2 of spades",value: 2, suit: 'spade'},
@@ -74,7 +83,7 @@ var deck = {
     for (var i = 0; i < 120 ; i++) {
       var j = Math.floor(Math.random()*52)
       var k = Math.floor(Math.random()*52)
-      this.swapCard
+      this.swapCards (j, k)
     }
   },
   swapCards: function (j, k) {
@@ -83,7 +92,7 @@ var deck = {
     this.deck[k]  = temp;
   },
   dealCard: function(){
-    if (this.deck.length < 12){
+    if (this.deck.length < 8){
       return alert("not enough cards must shuffle or start a new game");
     }else{
       return this.deck.pop();
