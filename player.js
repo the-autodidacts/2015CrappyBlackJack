@@ -3,10 +3,23 @@ var player = {
   purse:      1000,
   bet:        25,
   bust:       false,
+  blackjack:  false,
 
-  calculate:  function () {
+  blackjack: function () {
+    if(this.hand[0].value === 1 && this.hand[1].value === 10 ){
+      this.blackjack = true
+    }
+    else if(this.hand[1].value === 1 && this.hand[0].value === 10 ) {
+      this.blackjack = true
+    }
+    else {
+      this.blackjack = false
+    }
+    return this.blackjack
+  },
+  calculate: function () {
     var value = 0
-    for (i = 0; i < this.hand.length; i ++){
+    for (var i = 0; i < this.hand.length; i++) {
       value  += this.hand[i].value
     }
       return value;
@@ -41,5 +54,3 @@ var player = {
 
   }
 }
-
-//  dealer object
