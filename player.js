@@ -2,6 +2,7 @@ var player = {
   hand:       [],
   purse:      1000,
   bet:        25,
+  bust:       false,
 
   calculate:  function () {
     var value = 0
@@ -22,13 +23,21 @@ var player = {
     this.purse -= this.bet
     return this.purse
   },
-  hit:    function (card) {
-    this.hand.push(card)
+  //  Takes card of deck and pushes to player hand gets value of player hand
+  hit: function (card) {
+    this.hand.push(deck.dealCard())
+    if (this.calculate() > 21) {
+      this.bust = true
+    }
+    else {
+      this.bust = false
+    }
+    return this.bust
   },
-  stand:  function () {
+  stand: function () {
 
   },
-  split:  function (card, bet) {
+  split: function (card, bet) {
 
   }
 }
