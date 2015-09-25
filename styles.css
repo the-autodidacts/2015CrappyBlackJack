@@ -1,0 +1,36 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+#table #top-div{
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background: #799E35;
+
+}
+
+#table #top-div #dealer-box {
+  position: absolute;
+  width: 45%;
+  height: 100%;
+  border: 2px dashed black;
+
+}
+
+#table #bottom-div {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background: #799E35;
+}
+
+#table #bottom-div #player-box {
+  position: absolute;
+  width: 45%;
+  height: 100%;
+  border: 2px dashed black;
+}
