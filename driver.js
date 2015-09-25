@@ -1,8 +1,14 @@
-// Game object
-var blackjack = {
-  deck.deckcreateDeck();
-  deck.shuffleDeck();
-  player.hit(card)
+// Game object instance
+var blackjack = function(){
+  deck.createDeck()
+  deck.shuffleDeck()
+  console.log(deck.deck)
+  player.hit(deck.dealCard())
+  dealer.hit(deck.dealCard())
+  player.hit(deck.dealCard())
+  dealer.hit(deck.dealCard())
+  console.log(player.hand)
+  console.log(dealer.hand[0])
 }
 
 // Deck object
@@ -75,12 +81,24 @@ var player = {
 
   },
   hit: function (card) {
-
+    this.hand.push(card)
   },
   stand: function () {
 
   },
   split: function (card, bet) {
+
+  },
+}
+
+//  dealer object
+var dealer = {
+  hand:       [],
+
+  hit: function (card) {
+    this.hand.push(card)
+  },
+  stand: function () {
 
   },
 }
