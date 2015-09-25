@@ -3,12 +3,15 @@ var blackjack = function(){
   deck.createDeck()
   deck.shuffleDeck()
   console.log(deck.deck)
+  player.placeBet(player.bet)
   player.hit(deck.dealCard())
   dealer.hit(deck.dealCard())
   player.hit(deck.dealCard())
   dealer.hit(deck.dealCard())
   console.log(player.hand)
   console.log(dealer.hand[0])
+  console.log(player.bet)
+  console.log(player.purse)
 }
 
 // Deck object
@@ -75,10 +78,19 @@ var deck = {
 var player = {
   hand:       [],
   purse:      1000,
-  minimumBet: 25,
+  bet:        25,
 
   raiseBet: function (amount) {
-
+    this.bet += amount
+    return this.bet
+  },
+  resetBet: function () {
+    this.bet = 25
+    return this.bet
+  },
+  placeBet: function () {
+    this.purse -= this.bet
+    return this.purse
   },
   hit: function (card) {
     this.hand.push(card)
@@ -88,7 +100,7 @@ var player = {
   },
   split: function (card, bet) {
 
-  },
+  }
 }
 
 //  dealer object
