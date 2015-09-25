@@ -3,19 +3,20 @@ var player = {
   purse:      1000,
   bet:        25,
   bust:       false,
-  blackjack:  false,
+  blackjackVal:  false,
 
+  // can be shortened don't need blackjackVal will fix later
   blackjack: function () {
     if(this.hand[0].value === 1 && this.hand[1].value === 10 ){
-      this.blackjack = true
+      this.blackjackVal = true
     }
     else if(this.hand[1].value === 1 && this.hand[0].value === 10 ) {
-      this.blackjack = true
+      this.blackjackVal = true
     }
     else {
-      this.blackjack = false
+      this.blackjackVal = false
     }
-    return this.blackjack
+    return this.blackjackVal
   },
   calculate: function () {
     var value = 0

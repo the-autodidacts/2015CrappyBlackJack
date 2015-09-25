@@ -9,13 +9,21 @@ var blackjack = function () {
   player.hit(deck.dealCard())
   dealer.hit(deck.dealCard())
 
-  if (player.blackjack() && dealer.blackjack() === false){
+  player.blackjack()
+  dealer.blackjack()
+
+  // seeing if anyone is immediately out.
+  if (player.blackjackVal && !dealer.blackjackVal) {
     console.log("player wins BLACKJACK")
     //add money to player purse
   }
-    else if(player.blackjack() && dealer.blackjack()){
+    else if(player.blackjackVal && dealer.blackjackVal) {
       console.log("PUSH BOTH HAVE BLACK JACK")
     //player purse stays the same
+    }
+    else if (dealer.blackjackVal && !player.blackjackVal) {
+      console.log("Player Loses Dealer has Black Jack")
+
     }
 
   player.calculate()
