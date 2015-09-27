@@ -1,7 +1,7 @@
 var dealer = {
   hand:       [],
   blackjackVal:   false,
-
+  bust: false,
   calculate:  function () {
     var value = 0
     for (var i = 0; i < this.hand.length; i++) {
@@ -15,7 +15,14 @@ var dealer = {
     return value;
   },
   hit: function (card) {
-    this.hand.push(card)
+    this.hand.push(deck.dealCard())
+    if (this.calculate() > 21) {
+      this.bust = true
+    }
+    else {
+      this.bust = false
+    }
+    return this.bust
   },
   stand: function () {
 

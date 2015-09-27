@@ -2,7 +2,7 @@ var start = function () {
   deck.shuffleDeck()
 }
 var deal = function () {
-  
+
   player.placeBet(player.bet)
   player.hit(deck.dealCard())
   dealer.hit(deck.dealCard())
@@ -16,6 +16,7 @@ var deal = function () {
   $('#hit').on('click', function (){
       player.hit(deck.dealCard())
     })
+
     else {
       $('#bottom-div').append(player.calculate()).append('<br>').append('BUST')
 
@@ -43,6 +44,14 @@ var determineWinner = function () {
       console.log("Player Loses Dealer has Black Jack")
       player.purse -= player.bet
     }
+    else if (player.bust) {
+      console.log("Player Loses By Bust")
+      player.purse -= player.bet
+    }
+    else if (dealer.bust) {
+      console.log("Dealer Looses By Bust")
+      player.purse += player.bet
+    }
 }
 
 var viewHand = function(){
@@ -50,6 +59,7 @@ var viewHand = function(){
   $('#player-box').append(player.hand[0].name).append('<br>').append(player.hand[1].name)
 }
 
+start()
 $('#deal').on('click', function (){
     deal()
   })
