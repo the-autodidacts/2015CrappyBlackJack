@@ -4,6 +4,12 @@
   box-sizing: border-box;
 
 }
+h1 {
+  text-align: center;
+}
+#table {
+  min-width: 480px;
+}
 
 #table #top-div{
   position: relative;
@@ -33,4 +39,23 @@
   width: 45%;
   height: 100%;
   border: 2px dashed black;
+}
+
+#table #bottom-div #button-box {
+  position: absolute;
+  display: inline;
+  width: 25%;
+  height: 300px;
+  left: 45%;
+  background: #799E35;
+  border: 2px dashed red;
+}
+
+button {
+  display: block;
+  width: 120px;
+  min-width: 120px;
+  font-size: 1.2em;
+  margin-bottom: 10%;
+  overflow: inherit;
 }
