@@ -2,7 +2,7 @@
 var deck = {
   // maybe add more decks to a shoe object down the line
   deck:  [
-                  {name:  "ace of spades",value: 1, suit: 'spade'},
+                  {name:  "ace of spades",value: 11, suit: 'spade'},
                   {name:  "2 of spades",value: 2, suit: 'spade'},
                   {name:  "3 of spades", value: 3, suit: 'spade'},
                   {name:  "4 of spades", value: 4, suit: 'spade'},
@@ -15,7 +15,7 @@ var deck = {
                   {name:  "jack of spades", value: 10, suit: 'spade'},
                   {name:  "queen of spades", value: 10, suit: 'spade'},
                   {name:  "king of spades", value: 10, suit: 'spade'},
-                  {name:  "ace of clubs", value: 1, suit: 'clubs'},
+                  {name:  "ace of clubs", value: 11, suit: 'clubs'},
                   {name:  "2 of clubs", value: 2, suit: 'clubs'},
                   {name:  "3 of clubs", value: 3, suit: 'clubs'},
                   {name:  "4 of clubs", value: 4, suit: 'clubs'},
@@ -28,7 +28,7 @@ var deck = {
                   {name:  "jack of clubs", value: 10, suit: 'clubs'},
                   {name:  "queen of clubs", value: 10, suit: 'clubs'},
                   {name:  "king of clubs", value: 10, suit: 'clubs'},
-                  {name:  "ace of hearts", value: 1, suit: 'heart'},
+                  {name:  "ace of hearts", value: 11, suit: 'heart'},
                   {name:  "2 of hearts", value: 2, suit: 'heart'},
                   {name:  "3 of hearts", value: 3, suit: 'heart'},
                   {name:  "4 of hearts", value: 4, suit: 'heart'},
@@ -41,7 +41,7 @@ var deck = {
                   {name:  "jack of hearts", value: 10, suit: 'heart'},
                   {name:  "queen of hearts", value: 10, suit: 'heart'},
                   {name:  "king of hearts", value: 10, suit: 'heart'},
-                  {name:  "ace of diamonds", value: 1, suit: 'diamond'},
+                  {name:  "ace of diamonds", value: 11, suit: 'diamond'},
                   {name:  "2 of diamonds", value: 2, suit: 'diamond'},
                   {name:  "3 of diamonds", value: 3, suit: 'diamond'},
                   {name:  "4 of diamonds", value: 4, suit: 'diamond'},

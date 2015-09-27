@@ -1,8 +1,8 @@
-var startGame = function () {
-
-  //createDeck will be needed to reset game in the future
-  deck.createDeck()
+var start = function () {
   deck.shuffleDeck()
+}
+var deal = function () {
+  
   player.placeBet(player.bet)
   player.hit(deck.dealCard())
   dealer.hit(deck.dealCard())
@@ -12,7 +12,14 @@ var startGame = function () {
   dealer.calculate()
   determineWinner()
   viewHand()
-  $('#hit').on('click', player.hit(deck.dealCard()))
+  if ( player.calculate() < 21)
+  $('#hit').on('click', function (){
+      player.hit(deck.dealCard())
+    })
+    else {
+      $('#bottom-div').append(player.calculate()).append('<br>').append('BUST')
+
+    }
 
   console.log('player is holding ' + player.hand[0].name + ' and ' + player.hand[1].name)
   console.log('dealers is holding ' + dealer.hand[0].name)
@@ -43,4 +50,6 @@ var viewHand = function(){
   $('#player-box').append(player.hand[0].name).append('<br>').append(player.hand[1].name)
 }
 
-startGame()
+$('#deal').on('click', function (){
+    deal()
+  })
