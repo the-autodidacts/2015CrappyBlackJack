@@ -1,7 +1,46 @@
 
-var start = function () {
+$(document).ready(function() {
+  $('#deal').on('click', function (){
+      deal()
+  })
+  $('#hit').on('click', function (){
+      player.hit(deck.dealCard())
+      if (player.bust){
+        determineWinner()
+        showPlayerCards()
+        refreshBoard()
+      }
+      determineWinner()
+      showPlayerCards()
+  })
+  $('#stand').on('click', function (){
+      playAsDealer()
+      determineWinner()
+      showDealerCards()
+  })
+  //not working maybe needs to be in its own function instead of where we are setting the listeners
+  if (player.hand[0].value == player.hand[1].value){
+    $('#double').on('click', function (){
+        player.bet += player.bet*2
+        playAsDealer()
+        showDealerCards()
+        determineWinner()
+        refreshBoard()
+        player.resetBet()
+      })
+  }
+  $('#increase-bet').on('click', function (){
+      player.raiseBet()
+      refreshBoard()
+  })
+  $('#reset-bet').on('click', function (){
+      player.resetBet()
+      refreshBoard()
+  })
+  //listenersOff()
   deck.shuffleDeck()
-}
+})
+
 
 var deal = function () {
   clearTable()
@@ -50,19 +89,19 @@ var determineWinnerBlackJack = function () {
     player.purse += player.bet * 1.5
     refreshBoard()
     $('#score-card').append("Player Wins! BLACKJACK!")
-    listenersOff()
+    //listenersOff()
     }
     else if(player.blackjack() && dealer.blackjack()) {
       refreshBoard()
       $('#score-card').append("PUSH BOTH HAVE BLACK JACK")
-      listenersOff()
+      //listenersOff()
     //player purse stays the same
     }
     else if (dealer.blackjack() && !player.blackjack()) {
       player.purse -= player.bet
       refreshBoard()
       $('#score-card').append("Player Loses Dealer has Black Jack")
-      listenersOff()
+      //listenersOff()
     }
 }
 
@@ -71,30 +110,30 @@ var determineWinner = function () {
     player.purse -= player.bet
     refreshBoard()
     $('#score-card').append("Player Loses By Bust")
-    listenersOff()
+    //listenersOff()
   }
     else if (dealer.bust) {
       player.purse += player.bet
       refreshBoard()
       $('#score-card').append("Dealer Looses By Bust")
-      listenersOff()
+      //listenersOff()
     }
     else if (player.calculate() < dealer.calculate()){
       refreshBoard()
       $('#score-card').append("Player Looses by Lower hand")
       player.purse -= player.bet
-      listenersOff()
+      //listenersOff()
     }
     else if (player.calculate() > dealer.calculate()){
       refreshBoard()
       $('#score-card').append("Dealer Looses by Lower hand")
       player.purse += player.bet
-      listenersOff()
+      //listenersOff()
     }
     else if (player.calculate() == dealer.calculate()){
       refreshBoard()
       $('#score-card').append("Push")
-      listenersOff()
+      //listenersOff()
     }
 }
 
@@ -117,51 +156,11 @@ var showPlayerCards = function () {
     $('#player-box').append("<img src='" + player.hand[i].source + "' />")
   }
 }
-
-var listenersOff = function () {
-  $('#hit').off()
-  $('#stand').off()
-  $('#increase-bet').off()
-  $('#reset-bet').off()
-}
-var setListeners = function () {
-  $('#deal').on('click', function (){
-      deal()
-      setListeners()
-  })
-  $('#hit').on('click', function (){
-      player.hit(deck.dealCard())
-      if (player.bust){
-        determineWinner()
-        showPlayerCards()
-        refreshBoard()
-      }
-  })
-  $('#stand').on('click', function (){
-      playAsDealer()
-      determineWinner()
-      showDealerCards()
-  })
-  // not working maybe needs to be in its own function instead of where we are setting the listeners
-  // if (player.hand[0].value == player.hand[1].value){
-  //   $('#double').on('click', function (){
-  //       player.bet += player.bet*2
-  //       playAsDealer()
-  //       showDealerCards()
-  //       determineWinner()
-  //       refreshBoard()
-  //       player.resetBet()
-  //     })
-  // }
-  $('#increase-bet').on('click', function (){
-      player.raiseBet()
-      refreshBoard()
-  })
-  $('#reset-bet').on('click', function (){
-      player.resetBet()
-      refreshBoard()
-  })
-}
-start()
-setListeners()
+//
+// var listenersOff = function () {
+//   $('#hit').off()
+//   $('#stand').off()
+//   $('#increase-bet').off()
+//   $('#reset-bet').off()
+// }
 refreshBoard()
