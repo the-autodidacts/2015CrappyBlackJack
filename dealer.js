@@ -15,7 +15,7 @@ var dealer = {
     return value;
   },
   hit: function (card) {
-    this.hand.push(deck.dealCard())
+    this.hand.push(card)
     if (this.calculate() > 21) {
       this.bust = true
     }

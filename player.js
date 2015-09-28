@@ -40,7 +40,7 @@ var player = {
   },
   //  Takes card of deck and pushes to player hand gets value of player hand
   hit: function (card) {
-    this.hand.push(deck.dealCard())
+    this.hand.push(card)
     if (this.calculate() > 21) {
       this.bust = true
     }

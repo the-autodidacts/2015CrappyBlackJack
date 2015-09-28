@@ -3,6 +3,8 @@ var start = function () {
 }
 var deal = function () {
 
+  player.deck = []
+  dealer.deck = []
   player.hit(deck.dealCard())
   dealer.hit(deck.dealCard())
   player.hit(deck.dealCard())
@@ -89,5 +91,5 @@ var setListeners = function () {
       player.resetBet()
   })
 }
-setListeners()
 start()
+setListeners()
