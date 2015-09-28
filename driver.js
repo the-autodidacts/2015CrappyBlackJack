@@ -3,7 +3,6 @@ var start = function () {
 }
 var deal = function () {
 
-  player.placeBet(player.bet)
   player.hit(deck.dealCard())
   dealer.hit(deck.dealCard())
   player.hit(deck.dealCard())

@@ -38,10 +38,6 @@ var player = {
     this.bet = 25
     return this.bet
   },
-  placeBet: function () {
-    this.purse -= this.bet
-    return this.purse
-  },
   //  Takes card of deck and pushes to player hand gets value of player hand
   hit: function (card) {
     this.hand.push(deck.dealCard())
