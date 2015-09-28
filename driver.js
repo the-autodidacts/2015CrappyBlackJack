@@ -101,19 +101,20 @@ var determineWinner = function () {
 }
 
 var viewHand = function(){
-  $('#dealer-box').append(dealer.hand[0].name)
-  $('#player-box').append(player.hand[0].name).append('<br>').append(player.hand[1].name)
+  $('#dealer-box').append("<img src='" + dealer.hand[0].source + "' />")
+  $('#player-box').append("<img src='" + player.hand[0].source + "' />")
+  $('#player-box').append("<img src='" + player.hand[1].source + "' />")
 }
 
 var showDealerCards = function () {
   for (var i = 1; i < dealer.hand.length; i++){
-    $('#dealer-box').append(' ').append(dealer.hand[i].name)
+    $('#player-box').append("<img src='" + dealer.hand[i].source + "' />")
   }
 }
 
 var showPlayerCards = function () {
   for (var i = 2; i < player.hand.length; i++){
-    $('#player-box').append(' ').append(player.hand[i].name)
+    $('#player-box').append("<img src='" + player.hand[i].source + "' />")
   }
 }
 

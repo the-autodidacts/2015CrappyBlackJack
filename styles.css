@@ -68,3 +68,7 @@ button {
   margin-bottom: 10%;
   overflow: inherit;
 }
+img {
+  width: 20%;
+  height: 25%;
+}
