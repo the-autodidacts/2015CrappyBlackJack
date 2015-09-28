@@ -30,8 +30,8 @@ var player = {
     }
     return value;
   },
-  raiseBet: function (amount) {
-    this.bet += amount
+  raiseBet: function () {
+    this.bet += 25
     return this.bet
   },
   resetBet: function () {
@@ -52,9 +52,6 @@ var player = {
       this.bust = false
     }
     return this.bust
-  },
-  stand: function () {
-
   },
   split: function (card, bet) {
 
