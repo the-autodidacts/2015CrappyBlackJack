@@ -108,7 +108,7 @@ var viewHand = function(){
 
 var showDealerCards = function () {
   for (var i = 1; i < dealer.hand.length; i++){
-    $('#player-box').append("<img src='" + dealer.hand[i].source + "' />")
+    $('#dealer-box').append("<img src='" + dealer.hand[i].source + "' />")
   }
 }
 
@@ -142,6 +142,13 @@ var setListeners = function () {
       determineWinner()
       showDealerCards()
   })
+  $('#double').on('click', function (){
+      player.bet += player.bet*2
+      playAsDealer()
+      showDealerCards()
+      determineWinner()
+      refreshBoard()
+    })
   $('#increase-bet').on('click', function (){
       player.raiseBet()
       refreshBoard()
