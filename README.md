@@ -5,7 +5,7 @@
 I started by thinking of everything on the table as an object.
 
   The objects implemented in the game are a dealer object, a player object, a deck object and a driver class that runs the entire thing.
-  
+
 
 3.  Unsolved problem. The biggest problem that i have is that cards keep disappearing from the deck when deal is called. Also the $('#hit').on('click') listener continues to hit until I bust with out terminating the game. I suspect both problem are related to event listners but I have not been able to target the problem. The game works as it should from console.
 

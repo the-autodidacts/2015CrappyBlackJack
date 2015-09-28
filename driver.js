@@ -19,16 +19,16 @@ $(document).ready(function() {
       showDealerCards()
   })
   //not working maybe needs to be in its own function instead of where we are setting the listeners
-  if (player.hand[0].value == player.hand[1].value){
-    $('#double').on('click', function (){
-        player.bet += player.bet*2
-        playAsDealer()
-        showDealerCards()
-        determineWinner()
-        refreshBoard()
-        player.resetBet()
-      })
-  }
+  // if (player.hand[0].value == player.hand[1].value){
+  //   $('#double').on('click', function (){
+  //       player.bet += player.bet*2
+  //       playAsDealer()
+  //       showDealerCards()
+  //       determineWinner()
+  //       refreshBoard()
+  //       player.resetBet()
+  //     })
+  // }
   $('#increase-bet').on('click', function (){
       player.raiseBet()
       refreshBoard()
@@ -38,9 +38,10 @@ $(document).ready(function() {
       refreshBoard()
   })
   //listenersOff()
-  deck.shuffleDeck()
+
 })
 
+deck.shuffleDeck()
 
 var deal = function () {
   clearTable()
