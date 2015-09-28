@@ -50,6 +50,15 @@ h1 {
   background: #799E35;
   border: 2px dashed red;
 }
+#table #top-div #score-card{
+  position: absolute;
+  display: inline;
+  width: 25%;
+  height: 300px;
+  left: 45%;
+  background: #799E35;
+  border: 2px dashed red;
+}
 
 button {
   display: block;

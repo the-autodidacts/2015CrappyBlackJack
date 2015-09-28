@@ -20,13 +20,17 @@ var deal = function () {
 }
 var clearTable = function () {
   //  removing cards from player's last hand
-  for (var i = 0; i <= player.hand.length; i ++){
-    player.hand.pop()
-  }
+  player.hand.splice(0,player.hand.length)
   //  removing cards from dealer's last hand
-  for (var i = 0; i <= dealer.hand.length; i ++){
-    dealer.hand.pop()
-  }
+  dealer.hand.splice(0,dealer.hand.length)
+  // clear the rest of the table
+  $('#dealer-box').empty().append('<h1>dealer</h1>')
+
+  $('#player-box').empty().append('<h1>player</h1>').append('<h2>purse</h2>')
+  .append(player.purse).append('<h2>bet</h2>').append(player.bet).append('</br>')
+
+  $('#footer').empty()
+
 }
 var playAsDealer = function () {
   var i = dealer.calculate()
@@ -69,7 +73,7 @@ var determineWinner = function () {
       player.purse += player.bet
     }
     else if (player.calculate() == dealer.calculate()){
-      cosole.log("Push")
+      console.log("Push")
     }
 }
 
@@ -77,7 +81,16 @@ var viewHand = function(){
   $('#dealer-box').append(dealer.hand[0].name)
   $('#player-box').append(player.hand[0].name).append('<br>').append(player.hand[1].name)
 }
-
+var showDealerCards = function () {
+  for (var i = 1; i < dealer.hand.length; i++){
+    $('#dealer-box').append(' ').append(dealer.hand[i].name)
+  }
+}
+var showPlayerCards = function () {
+  for (var i = 2; i < player.hand.length; i++){
+    $('#player-box').append(' ').append(player.hand[i].name)
+  }
+}
 var setListeners = function () {
   $('#deal').on('click', function (){
       deal()
@@ -86,12 +99,14 @@ var setListeners = function () {
       player.hit(deck.dealCard())
       if (player.bust){
         determineWinner()
-        $('#bottom-div').append(player.calculate()).append('<br>').append('BUST')
+        showPlayerCards()
+        $('#footer').append(player.calculate()).append('<br>').append('BUST')
       }
   })
   $('#stand').on('click', function (){
       playAsDealer()
       determineWinner()
+      showDealerCards()
   })
   $('#increase-bet').on('click', function (){
       player.raiseBet()
