@@ -13,7 +13,10 @@ var deal = function () {
   dealer.calculate()
   determineWinnerBlackJack()
   viewHand()
-  refreshBoard()
+  $('#score-card').empty().append('<h2>purse</h2>')
+  .append(player.purse).append('<h2>bet</h2>').append(player.bet).append('</br>')
+  .append('<h2>dealer</h2>').append(dealer.hand[0].value).append('<h2>player</h2>')
+  .append(player.calculate())
 }
 
 var refreshBoard = function () {
@@ -115,14 +118,15 @@ var showPlayerCards = function () {
 }
 
 var listenersOff = function () {
-  $('#hit').off
-  $('#stand').off
-  $('#increase-bet').off
-  $('#reset-bet').off
+  $('#hit').off()
+  $('#stand').off()
+  $('#increase-bet').off()
+  $('#reset-bet').off()
 }
 var setListeners = function () {
   $('#deal').on('click', function (){
       deal()
+      setListeners()
   })
   $('#hit').on('click', function (){
       player.hit(deck.dealCard())
