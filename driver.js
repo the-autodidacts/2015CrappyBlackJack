@@ -3,14 +3,7 @@ var start = function () {
 }
 var deal = function () {
 
-  //  removing cards from player
-  for (i in player.hand){
-    deck.burnDeck.push(player.hand[i].pop())
-  }
-  for (i in dealer.hand){
-    deck.burnDeck.push(player.hand[i].pop())
-  }
-
+  clearTable()
   player.hit(deck.dealCard())
   dealer.hit(deck.dealCard())
   player.hit(deck.dealCard())
@@ -24,6 +17,16 @@ var deal = function () {
   console.log('player is betting $' + player.bet)
   console.log('player has $' + player.purse)
   console.log("value of player's hand: " + player.calculate())
+}
+var clearTable = function () {
+  //  removing cards from player's last hand
+  for (var i = 0; i <= player.hand.length; i ++){
+    player.hand.pop()
+  }
+  //  removing cards from dealer's last hand
+  for (var i = 0; i <= dealer.hand.length; i ++){
+    dealer.hand.pop()
+  }
 }
 var playAsDealer = function () {
   var i = dealer.calculate()

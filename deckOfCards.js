@@ -55,18 +55,7 @@ var deck = {
                   {name:  "queen of diamonds", value: 10, suit: 'diamond'},
                   {name:  "king of diamonds", value: 10, suit: 'diamond'}
                 ],
-
-      gameDeck:  [],
-//can't push into gameDeck copying functions is and issue
-  createDeck:   function(){
-    for ( i = 0; i < this.deck.length; i++){
-      var temp = {}
-      temp = this.deck[i]
-      // console.log(temp);
-      this.gameDeck.push(temp)
-    }
-    console.log(this);
-  },
+      burnDeck: [],
   shuffleDeck: function () {
     for (var i = 0; i < 120 ; i++) {
       var j = Math.floor(Math.random()*52)
