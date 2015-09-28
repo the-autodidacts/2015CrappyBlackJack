@@ -63,7 +63,7 @@ var refreshBoard = function () {
   $('#score-card').empty().append('<h2>purse</h2>')
   .append(player.purse).append('<h2>bet</h2>').append(player.bet).append('</br>')
   .append('<h2>dealer</h2>').append(dealer.calculate()).append('<h2>player</h2>')
-  .append(player.calculate())
+  .append(player.calculate()).append('</br>')
 }
 
 var clearTable = function () {
