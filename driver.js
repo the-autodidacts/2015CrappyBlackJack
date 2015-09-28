@@ -46,21 +46,19 @@ var playAsDealer = function () {
 }
 
 var determineWinnerBlackJack = function () {
-  player.blackjack()
-  dealer.blackjack()
-  if (player.blackjackVal && !dealer.blackjackVal) {
+  if (player.blackjack() && !dealer.blackjack()) {
     player.purse += player.bet * 1.5
     refreshBoard()
     $('#score-card').append("Player Wins! BLACKJACK!")
     listenersOff()
     }
-    else if(player.blackjackVal && dealer.blackjackVal) {
+    else if(player.blackjack() && dealer.blackjack()) {
       refreshBoard()
       $('#score-card').append("PUSH BOTH HAVE BLACK JACK")
       listenersOff()
     //player purse stays the same
     }
-    else if (dealer.blackjackVal && !player.blackjackVal) {
+    else if (dealer.blackjack() && !player.blackjack()) {
       player.purse -= player.bet
       refreshBoard()
       $('#score-card').append("Player Loses Dealer has Black Jack")
