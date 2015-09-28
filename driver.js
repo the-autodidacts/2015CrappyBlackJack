@@ -11,8 +11,8 @@ var deal = function () {
   dealer.hit(deck.dealCard())
   player.calculate()
   dealer.calculate()
-  determineWinnerBlackJack()
   viewHand()
+  determineWinnerBlackJack()
   $('#score-card').empty().append('<h2>purse</h2>')
   .append(player.purse).append('<h2>bet</h2>').append(player.bet).append('</br>')
   .append('<h2>dealer</h2>').append(dealer.hand[0].value).append('<h2>player</h2>')
@@ -142,13 +142,17 @@ var setListeners = function () {
       determineWinner()
       showDealerCards()
   })
-  $('#double').on('click', function (){
-      player.bet += player.bet*2
-      playAsDealer()
-      showDealerCards()
-      determineWinner()
-      refreshBoard()
-    })
+  // not working maybe needs to be in its own function instead of where we are setting the listeners
+  // if (player.hand[0].value == player.hand[1].value){
+  //   $('#double').on('click', function (){
+  //       player.bet += player.bet*2
+  //       playAsDealer()
+  //       showDealerCards()
+  //       determineWinner()
+  //       refreshBoard()
+  //       player.resetBet()
+  //     })
+  // }
   $('#increase-bet').on('click', function (){
       player.raiseBet()
       refreshBoard()
