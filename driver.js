@@ -3,8 +3,14 @@ var start = function () {
 }
 var deal = function () {
 
-  player.deck = []
-  dealer.deck = []
+  //  removing cards from player
+  for (i in player.hand){
+    deck.burnDeck.push(player.hand[i].pop())
+  }
+  for (i in dealer.hand){
+    deck.burnDeck.push(player.hand[i].pop())
+  }
+
   player.hit(deck.dealCard())
   dealer.hit(deck.dealCard())
   player.hit(deck.dealCard())
