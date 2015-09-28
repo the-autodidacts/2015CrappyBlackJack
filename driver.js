@@ -1,8 +1,9 @@
+
 var start = function () {
   deck.shuffleDeck()
 }
-var deal = function () {
 
+var deal = function () {
   clearTable()
   player.hit(deck.dealCard())
   dealer.hit(deck.dealCard())
@@ -12,12 +13,16 @@ var deal = function () {
   dealer.calculate()
   determineWinnerBlackJack()
   viewHand()
-  console.log('player is holding ' + player.hand[0].name + ' and ' + player.hand[1].name)
-  console.log('dealers is holding ' + dealer.hand[0].name)
-  console.log('player is betting $' + player.bet)
-  console.log('player has $' + player.purse)
-  console.log("value of player's hand: " + player.calculate())
+  refreshBoard()
 }
+
+var refreshBoard = function () {
+  $('#score-card').empty().append('<h2>purse</h2>')
+  .append(player.purse).append('<h2>bet</h2>').append(player.bet).append('</br>')
+  .append('<h2>dealer</h2>').append(dealer.calculate()).append('<h2>player</h2>')
+  .append(player.calculate())
+}
+
 var clearTable = function () {
   //  removing cards from player's last hand
   player.hand.splice(0,player.hand.length)
@@ -25,13 +30,10 @@ var clearTable = function () {
   dealer.hand.splice(0,dealer.hand.length)
   // clear the rest of the table
   $('#dealer-box').empty().append('<h1>dealer</h1>')
-
-  $('#player-box').empty().append('<h1>player</h1>').append('<h2>purse</h2>')
-  .append(player.purse).append('<h2>bet</h2>').append(player.bet).append('</br>')
-
-  $('#footer').empty()
-
+  $('#player-box').empty().append('<h1>player</h1>')
+  refreshBoard()
 }
+
 var playAsDealer = function () {
   var i = dealer.calculate()
   while (i < 18){
@@ -39,41 +41,50 @@ var playAsDealer = function () {
     i = dealer.calculate()
   }
 }
+
 var determineWinnerBlackJack = function () {
   player.blackjack()
   dealer.blackjack()
   if (player.blackjackVal && !dealer.blackjackVal) {
-    console.log("player wins BLACKJACK")
     player.purse += player.bet * 1.5
+    refreshBoard().append("Player Wins! BLACKJACK!")
     }
     else if(player.blackjackVal && dealer.blackjackVal) {
-      console.log("PUSH BOTH HAVE BLACK JACK")
+      refreshBoard()
+      $('score-card').append("PUSH BOTH HAVE BLACK JACK")
     //player purse stays the same
     }
     else if (dealer.blackjackVal && !player.blackjackVal) {
-      console.log("Player Loses Dealer has Black Jack")
       player.purse -= player.bet
+      refreshBoard()
+      $('score-card').append("Player Loses Dealer has Black Jack")
     }
 }
+
 var determineWinner = function () {
  if (player.bust) {
-    console.log("Player Loses By Bust")
     player.purse -= player.bet
+    refreshBoard()
+    $('score-card').append("Player Loses By Bust")
   }
     else if (dealer.bust) {
-      console.log("Dealer Looses By Bust")
       player.purse += player.bet
+      refreshBoard()
+      $('score-card').append("Dealer Looses By Bust")
     }
     else if (player.calculate() < dealer.calculate()){
-      console.log("Player Looses by Lower hand")
+      refreshBoard()
+      $('score-card').append("Player Looses by Lower hand")
       player.purse -= player.bet
     }
     else if (player.calculate() > dealer.calculate()){
-      console.log("Dealer Looses by Lower hand")
+      refreshBoard()
+      $('score-card').append("Dealer Looses by Lower hand")
       player.purse += player.bet
     }
     else if (player.calculate() == dealer.calculate()){
-      console.log("Push")
+      refreshBoard()
+      $('score-card').append("Push")
     }
 }
 
@@ -81,16 +92,19 @@ var viewHand = function(){
   $('#dealer-box').append(dealer.hand[0].name)
   $('#player-box').append(player.hand[0].name).append('<br>').append(player.hand[1].name)
 }
+
 var showDealerCards = function () {
   for (var i = 1; i < dealer.hand.length; i++){
     $('#dealer-box').append(' ').append(dealer.hand[i].name)
   }
 }
+
 var showPlayerCards = function () {
   for (var i = 2; i < player.hand.length; i++){
     $('#player-box').append(' ').append(player.hand[i].name)
   }
 }
+
 var setListeners = function () {
   $('#deal').on('click', function (){
       deal()
@@ -100,7 +114,7 @@ var setListeners = function () {
       if (player.bust){
         determineWinner()
         showPlayerCards()
-        $('#footer').append(player.calculate()).append('<br>').append('BUST')
+        refreshBoard()
       }
   })
   $('#stand').on('click', function (){
@@ -110,10 +124,13 @@ var setListeners = function () {
   })
   $('#increase-bet').on('click', function (){
       player.raiseBet()
+      refreshBoard()
   })
   $('#reset-bet').on('click', function (){
       player.resetBet()
+      refreshBoard()
   })
 }
 start()
 setListeners()
+refreshBoard()
