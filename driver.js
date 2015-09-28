@@ -47,17 +47,21 @@ var determineWinnerBlackJack = function () {
   dealer.blackjack()
   if (player.blackjackVal && !dealer.blackjackVal) {
     player.purse += player.bet * 1.5
-    refreshBoard().append("Player Wins! BLACKJACK!")
+    refreshBoard()
+    $('#score-card').append("Player Wins! BLACKJACK!")
+    listenersOff()
     }
     else if(player.blackjackVal && dealer.blackjackVal) {
       refreshBoard()
-      $('score-card').append("PUSH BOTH HAVE BLACK JACK")
+      $('#score-card').append("PUSH BOTH HAVE BLACK JACK")
+      listenersOff()
     //player purse stays the same
     }
     else if (dealer.blackjackVal && !player.blackjackVal) {
       player.purse -= player.bet
       refreshBoard()
-      $('score-card').append("Player Loses Dealer has Black Jack")
+      $('#score-card').append("Player Loses Dealer has Black Jack")
+      listenersOff()
     }
 }
 
@@ -65,26 +69,31 @@ var determineWinner = function () {
  if (player.bust) {
     player.purse -= player.bet
     refreshBoard()
-    $('score-card').append("Player Loses By Bust")
+    $('#score-card').append("Player Loses By Bust")
+    listenersOff()
   }
     else if (dealer.bust) {
       player.purse += player.bet
       refreshBoard()
-      $('score-card').append("Dealer Looses By Bust")
+      $('#score-card').append("Dealer Looses By Bust")
+      listenersOff()
     }
     else if (player.calculate() < dealer.calculate()){
       refreshBoard()
-      $('score-card').append("Player Looses by Lower hand")
+      $('#score-card').append("Player Looses by Lower hand")
       player.purse -= player.bet
+      listenersOff()
     }
     else if (player.calculate() > dealer.calculate()){
       refreshBoard()
-      $('score-card').append("Dealer Looses by Lower hand")
+      $('#score-card').append("Dealer Looses by Lower hand")
       player.purse += player.bet
+      listenersOff()
     }
     else if (player.calculate() == dealer.calculate()){
       refreshBoard()
-      $('score-card').append("Push")
+      $('#score-card').append("Push")
+      listenersOff()
     }
 }
 
@@ -105,6 +114,12 @@ var showPlayerCards = function () {
   }
 }
 
+var listenersOff = function () {
+  $('#hit').off
+  $('#stand').off
+  $('#increase-bet').off
+  $('#reset-bet').off
+}
 var setListeners = function () {
   $('#deal').on('click', function (){
       deal()
