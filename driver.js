@@ -105,12 +105,14 @@ var viewHand = function(){
 }
 
 var showDealerCards = function () {
+  $('#dealer-box').empty().append("<h2>dealer</h2>")
   for (var i = 1; i < dealer.hand.length; i++){
     $('#dealer-box').append("<img src='" + dealer.hand[i].source + "' />")
   }
 }
 
 var showPlayerCards = function () {
+  $('player-box').empty().append('<h2>player</h2>')
   for (var i = 2; i < player.hand.length; i++){
     $('#player-box').append("<img src='" + player.hand[i].source + "' />")
   }
