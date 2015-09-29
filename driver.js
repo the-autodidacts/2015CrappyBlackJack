@@ -152,7 +152,7 @@ var showDealerCards = function () {
 }
 
 var showPlayerCards = function () {
-  $('player-box').empty().append('<h2>player</h2>')
+  $('#player-box').empty().append('<h2>player</h2>')
   for (var i = 0; i < player.hand.length; i++){
     $('#player-box').append("<img src='" + player.hand[i].source + "' />")
   }
